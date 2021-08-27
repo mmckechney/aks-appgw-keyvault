@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: aspnetapp
+  namespace: ##POD_IDENTITY_NAMESPACE##
+  annotations:
+    kubernetes.io/ingress.class: azure/application-gateway
+    appgw.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  tls:
+  - hosts:
+    - ##HOST_NAME## # replace with your host name
+    secretName: tls-csi
+  rules:
+  - host: ##HOST_NAME## # replace with your host name
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: aspnetapp
+          servicePort: 80

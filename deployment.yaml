@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aspnetapp
+  namespace: ##POD_IDENTITY_NAMESPACE##
+  labels:
+    app: aspnetapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aspnetapp
+  template:
+    metadata:
+      labels:
+        app: aspnetapp
+        aadpodidbinding: ##POD_IDENTITY_NAME##
+    spec:
+      containers:
+      - image: "mcr.microsoft.com/dotnet/core/samples:aspnetapp"
+        name: aspnetapp-image
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        volumeMounts:
+        - name: tls-csi
+          mountPath: "/certs"
+          readOnly: true
+      volumes:
+        - name: tls-csi
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: "##SECRETS_PROVIDER_CLASS_NAME##"
