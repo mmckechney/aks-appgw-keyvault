@@ -1,6 +1,6 @@
 # AKS with App Gateway ingress controller and certificates from Key Vault as `kubernetes.io/tls` secrets
 
-This work is a generalization of the work done by @AAkindele in the Gist: https://gist.github.com/AAkindele/d341cca3b56f51a49f1585f47e6ad2f3. Here, I am tokenizing the scripts that @AAkindele wrote and leveraging the steps and descriptions from that Gist.
+This work is a generalization of the work done by [@AAkindele](https://github.com/AAkindele) in the Gist: https://gist.github.com/AAkindele/d341cca3b56f51a49f1585f47e6ad2f3. Here, I am tokenizing the scripts that [@AAkindele](https://github.com/AAkindele) wrote and leveraging the steps and descriptions from that Gist.
 
 ----
 
